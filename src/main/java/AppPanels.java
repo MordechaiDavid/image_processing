@@ -12,7 +12,7 @@ public class AppPanels extends JPanel {
     protected ImagePanel procImgPanel;
     protected ButtonsPanel buttonsPanel;
 
-    protected Actions actions;
+    protected Filters actions;
 
     public AppPanels(){
         // COMPONENTS
@@ -26,7 +26,7 @@ public class AppPanels extends JPanel {
         this.add(buttonsPanel);
         this.add(procImgPanel);
 
-        this.actions = new Actions(this);
+        this.actions = new Filters(this);
 
         this.setLayout(new GridLayout(0,3));
         this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));

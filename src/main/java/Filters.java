@@ -3,9 +3,9 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.swing.*;
 
-public class Actions{
+public class Filters {
     static AppPanels panels;
-    public Actions(AppPanels panels){
+    public Filters(AppPanels panels){
         this.panels = panels;
     }
 

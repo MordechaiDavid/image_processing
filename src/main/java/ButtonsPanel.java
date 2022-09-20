@@ -44,9 +44,6 @@ public class ButtonsPanel extends JPanel {
         this.setLayout(null);
         this.setBackground(color);
 
-
-
-
     }
 
 
@@ -80,119 +77,17 @@ public class ButtonsPanel extends JPanel {
         panels.procImgPanel.image.setBounds(panels.procImgPanel.image.getX(), panels.procImgPanel.image.getY(), copyOfPicture.getIconWidth(), copyOfPicture.getIconHeight());
         repaint();
 
+        FilterButton button1 = new FilterButton("Grayscale", 1, this);
+        FilterButton button2 = new FilterButton("Color shift right", 2, this);
+        FilterButton button3 = new FilterButton("Color shift left", 3, this);
+        FilterButton button4 = new FilterButton("Mirror", 4, this);
+        FilterButton button5 = new FilterButton("EliminateRed", 5, this);
+        FilterButton button6 = new FilterButton("negative", 6, this);
+        FilterButton button7 = new FilterButton("contract", 7, this);
+        FilterButton button8 = new FilterButton("sepia", 8, this);
+        FilterButton button9 = new FilterButton("lighter", 9, this);
+        FilterButton button10 = new FilterButton("darker", 10, this);
 
-        JButton button1 = new JButton("Grayscale");
-        button1.addActionListener((event) -> {
-
-            try {
-
-                Actions.Grayscale(scanImage2);
-
-            } catch (Exception e) {
-                error(e);
-            }
-        });
-        JButton button2 = new JButton("Color Shift Right");
-        button2.addActionListener((event) -> {
-
-            try {
-
-                Actions.ColorShiftRight(scanImage2);
-
-            } catch (Exception e) {
-                error(e);
-            }
-        });
-        JButton button3 = new JButton("Color Shift Left");
-        button3.addActionListener((event) -> {
-
-            try {
-
-                Actions.ColorShiftLeft(scanImage2);
-
-            } catch (Exception e) {
-                error(e);
-            }
-        });
-        JButton button4 = new JButton("Mirror");
-        button4.addActionListener((event) -> {
-
-            try {
-
-                Actions.mirror(scanImage2);
-
-            } catch (Exception e) {
-                error(e);
-            }
-        });
-
-        JButton button5 = new JButton("Eliminate Red");
-        button5.addActionListener((event) -> {
-
-            try {
-
-                Actions.EliminateRed(scanImage2);
-
-            } catch (Exception e) {
-                error(e);
-            }
-        });
-
-        JButton button6 = new JButton("Negative");
-        button6.addActionListener((event) -> {
-
-            try {
-
-                Actions.negative(scanImage2);
-
-            } catch (Exception e) {
-                error(e);
-            }
-        });
-        JButton button7 = new JButton("Contract");
-        button7.addActionListener((event) -> {
-
-            try {
-
-                Actions.contract(scanImage2);
-
-            } catch (Exception e) {
-                error(e);
-            }
-        });
-        JButton button8 = new JButton("Sepia");
-        button8.addActionListener((event) -> {
-
-            try {
-
-                Actions.sepia(scanImage2);
-
-            } catch (Exception e) {
-                error(e);
-            }
-        });
-        JButton button9 = new JButton("Lighter");
-        button9.addActionListener((event) -> {
-
-            try {
-
-                Actions.lighter(scanImage2);
-
-            } catch (Exception e) {
-                error(e);
-            }
-        });
-        JButton button10 = new JButton("Darker");
-        button10.addActionListener((event) -> {
-
-            try {
-
-                Actions.darker(scanImage2);
-
-            } catch (Exception e) {
-                error(e);
-            }
-        });
         this.add(button1).setBounds(this.searchButton.getX(), this.searchButton.getY() + panels.ELEMENT_HEIGHT, panels.ELEMENT_WIDTH, panels.ELEMENT_HEIGHT);
         this.add(button2).setBounds(button1.getX(), button1.getY() + panels.ELEMENT_HEIGHT, panels.ELEMENT_WIDTH, panels.ELEMENT_HEIGHT);
         this.add(button3).setBounds(button2.getX(), button2.getY() + panels.ELEMENT_HEIGHT, panels.ELEMENT_WIDTH, panels.ELEMENT_HEIGHT);
@@ -203,17 +98,7 @@ public class ButtonsPanel extends JPanel {
         this.add(button8).setBounds(button7.getX(), button7.getY() + panels.ELEMENT_HEIGHT, panels.ELEMENT_WIDTH, panels.ELEMENT_HEIGHT);
         this.add(button9).setBounds(button8.getX(), button8.getY() + panels.ELEMENT_HEIGHT, panels.ELEMENT_WIDTH, panels.ELEMENT_HEIGHT);
         this.add(button10).setBounds(button9.getX(), button9.getY() + panels.ELEMENT_HEIGHT, panels.ELEMENT_WIDTH, panels.ELEMENT_HEIGHT);
-        // this.add(button11).setBounds(button10.getX(), button10.getY() + panels.ELEMENT_HEIGHT, panels.ELEMENT_WIDTH, panels.ELEMENT_HEIGHT);
 
-
-    }
-
-
-    private void error (Exception e){
-        JOptionPane.showMessageDialog(new JFrame(),
-                e.getMessage(),
-                "error",
-                JOptionPane.PLAIN_MESSAGE);
     }
 
 
