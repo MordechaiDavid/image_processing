@@ -10,7 +10,6 @@ public class Filters {
     }
 
 
-    //1.
     public static void ColorShiftRight(BufferedImage img) throws Exception {
         for (int x = 0; x < img.getWidth(); x++) {
             for (int y = 0; y < img.getHeight(); y++) {
@@ -63,11 +62,11 @@ public class Filters {
     }
 
     public static void Grayscale(BufferedImage img) throws Exception {
-        //get image width and height
+
         int width = img.getWidth();
         int height = img.getHeight();
 
-        //convert to grayscale
+
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 int p = img.getRGB(x, y);
@@ -77,27 +76,21 @@ public class Filters {
                 int g = (p >> 8) & 0xff;
                 int b = p & 0xff;
 
-                //calculate average
                 int avg = (r + g + b) / 3;
 
-                //replace RGB value with avg
+
                 p = (a << 24) | (avg << 16) | (avg << 8) | avg;
 
                 img.setRGB(x, y, p);
             }
         }
 
-//        try {
-//            File output = new File("C:\\files2\\027.png");
-//            ImageIO.write(img, "png", output);
+
         updatePhoto(img);
 
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
     }
 
-    //2.
+
     public static void mirror(BufferedImage img) throws Exception {
 
         int width = img.getWidth();
@@ -156,13 +149,13 @@ public class Filters {
         updatePhoto(img);
     }
 
-    //4.
+
 
     public static void negative(BufferedImage img) throws Exception {
         int width = img.getWidth();
         int height = img.getHeight();
 
-        // Convert to negative
+
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 int p = img.getRGB(x, y);
@@ -210,7 +203,7 @@ public class Filters {
         updatePhoto(img);
     }
 
-    //5.
+
     public static void lighter(BufferedImage img) throws Exception {
         int rgb[];
 
@@ -244,7 +237,7 @@ public class Filters {
         updatePhoto(img);
     }
 
-    //6.
+
     public static void darker(BufferedImage img) throws Exception {
         int rgb[];
 
@@ -289,7 +282,6 @@ public class Filters {
         return similar;
     }
 
-    //פונקציה משלימה להבהרת או השחרת תמונה
     public static int Truncate(int value) {
 
         if (value < 0) {
@@ -310,7 +302,7 @@ public class Filters {
                     "error",
                     JOptionPane.PLAIN_MESSAGE);
         }
-        ButtonsPanel.setScanImage2(ButtonsPanel.getImageUrl());
+        ButtonsPanel.setProcesImg(ButtonsPanel.getImageUrl());
 
     }
 

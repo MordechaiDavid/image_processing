@@ -18,36 +18,36 @@ public class FilterButton extends JButton {
             try {
                 switch (buttonID) {
                     case 1:
-                            Filters.Grayscale(buttonsPanel.scanImage2);
+                            Filters.Grayscale(buttonsPanel.procesImg);
                         break;
                     case 2:
-                        Filters.ColorShiftRight(buttonsPanel.scanImage2);
+                        Filters.ColorShiftRight(buttonsPanel.procesImg);
                         break;
                     case 3:
 
-                        Filters.ColorShiftLeft(buttonsPanel.scanImage2);
+                        Filters.ColorShiftLeft(buttonsPanel.procesImg);
                         break;
                     case 4:
-                        Filters.mirror(buttonsPanel.scanImage2);
+                        Filters.mirror(buttonsPanel.procesImg);
 
                         break;
                     case 5:
-                        Filters.EliminateRed(buttonsPanel.scanImage2);
+                        Filters.EliminateRed(buttonsPanel.procesImg);
                         break;
                     case 6:
-                        Filters.negative(buttonsPanel.scanImage2);
+                        Filters.negative(buttonsPanel.procesImg);
                         break;
                     case 7:
-                        Filters.contract(buttonsPanel.scanImage2);
+                        Filters.contract(buttonsPanel.procesImg);
                         break;
                     case 8:
-                        Filters.sepia(buttonsPanel.scanImage2);
+                        Filters.sepia(buttonsPanel.procesImg);
                         break;
                     case 9:
-                        Filters.lighter(buttonsPanel.scanImage2);
+                        Filters.lighter(buttonsPanel.procesImg);
                         break;
                     case 10:
-                        Filters.darker(buttonsPanel.scanImage2);
+                        Filters.darker(buttonsPanel.procesImg);
                         break;
                 }
             }catch (Exception e){

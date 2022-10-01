@@ -1,7 +1,6 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -13,42 +12,39 @@ public class ButtonsPanel extends JPanel {
     protected AppPanels panels;
     protected ChromeDriver driver;
     protected JButton searchButton;
-    protected BufferedImage scanImage;
-    protected static BufferedImage scanImage2;
+    protected BufferedImage originImg;
+    protected static BufferedImage procesImg;
     protected static URL imageUrl;
 
     public ButtonsPanel(AppPanels panels, Color color, int x){
         this.panels = panels;
 
-        JLabel enterProfile = new JLabel("ENTER PROFILE");
+        JLabel textLabel = new JLabel("ENTER NAME PROFILE");
         this.searchButton = new JButton("SEND");
         JTextField textField = new JTextField();
 
-        this.searchButton.setBackground(new Color(3, 168, 36));
+        this.searchButton.setBackground(Color.gray);
         this.searchButton.addActionListener((event) -> {
             String profileName = textField.getText();
             try {
-                //download the image
-                downloadImage(profileName);
-
+                loadImage(profileName);
 
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
 
-        this.add(enterProfile).setBounds(x ,  10, panels.ELEMENT_WIDTH, panels.ELEMENT_HEIGHT);
-        this.add(textField).setBounds(enterProfile.getX(), enterProfile.getY() + panels.ELEMENT_HEIGHT, panels.ELEMENT_WIDTH, panels.ELEMENT_HEIGHT);
+        this.add(textLabel).setBounds(x ,  10, panels.ELEMENT_WIDTH, panels.ELEMENT_HEIGHT);
+        this.add(textField).setBounds(textLabel.getX(), textLabel.getY() + panels.ELEMENT_HEIGHT, panels.ELEMENT_WIDTH, panels.ELEMENT_HEIGHT);
         this.add(this.searchButton).setBounds(textField.getX(), textField.getY() + panels.ELEMENT_HEIGHT, panels.ELEMENT_WIDTH, panels.ELEMENT_HEIGHT);
 
         this.setLayout(null);
         this.setBackground(color);
-
     }
 
 
 
-    private void downloadImage(String profileName) throws IOException {
+    private void loadImage(String profileName) throws IOException {
         this.driver = new ChromeDriver();
         this.driver.get("https://facebook.com/" + profileName);
         try {
@@ -56,12 +52,11 @@ public class ButtonsPanel extends JPanel {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        // find the element of the profile photo and display it
         WebElement element = driver.findElement(By.tagName("image"));
         String src = element.getAttribute("xlink:href");
         imageUrl = new URL(src);
-        this.scanImage = ImageIO.read(imageUrl);
-        this.scanImage2 = ImageIO.read(imageUrl);
+        this.originImg = ImageIO.read(imageUrl);
+        this.procesImg = ImageIO.read(imageUrl);
 
         driver.quit();
         addButtons();
@@ -69,12 +64,12 @@ public class ButtonsPanel extends JPanel {
     }
 
     public void addButtons() {
-        ImageIcon myPicture = new ImageIcon(scanImage);
-        ImageIcon copyOfPicture = new ImageIcon(scanImage2);
-        panels.origImgPanel.image.setIcon(myPicture);
-        panels.origImgPanel.image.setBounds(panels.origImgPanel.image.getX(), panels.origImgPanel.image.getY(), myPicture.getIconWidth(), myPicture.getIconHeight());
-        panels.procImgPanel.image.setIcon(copyOfPicture);
-        panels.procImgPanel.image.setBounds(panels.procImgPanel.image.getX(), panels.procImgPanel.image.getY(), copyOfPicture.getIconWidth(), copyOfPicture.getIconHeight());
+        ImageIcon img = new ImageIcon(originImg);
+        ImageIcon copyImg = new ImageIcon(procesImg);
+        panels.origImgPanel.image.setIcon(img);
+        panels.origImgPanel.image.setBounds(panels.origImgPanel.image.getX(), panels.origImgPanel.image.getY(), img.getIconWidth(), img.getIconHeight());
+        panels.procImgPanel.image.setIcon(copyImg);
+        panels.procImgPanel.image.setBounds(panels.procImgPanel.image.getX(), panels.procImgPanel.image.getY(), copyImg.getIconWidth(), copyImg.getIconHeight());
         repaint();
 
         FilterButton button1 = new FilterButton("Grayscale", 1, this);
@@ -106,9 +101,9 @@ public class ButtonsPanel extends JPanel {
         return imageUrl;
     }
 
-    public static void setScanImage2(URL imageUrl) {
+    public static void setProcesImg(URL imageUrl) {
         try {
-            scanImage2= ImageIO.read(ButtonsPanel.getImageUrl());
+            procesImg = ImageIO.read(ButtonsPanel.getImageUrl());
         } catch (IOException e) {
             e.printStackTrace();
         }
